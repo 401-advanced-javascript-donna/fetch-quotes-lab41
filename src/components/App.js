@@ -6,7 +6,7 @@ const App = () => {
     <>
       <SimpsonsQuote />
     </>
-  )
+  );
 };
 
 export default App;
