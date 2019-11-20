@@ -4,7 +4,7 @@ import Quote from '../components/quote/Quote';
 import { connect } from 'react-redux';
 import { getLoading, getCharacterImage, getCharacterName, getQuote } from '../selectors/quoteSelectors';
 import { setQuotePromise } from '../actions/quoteActions';
-import Load from '../components/quote/Loading';
+import Loading from '../components/quote/Loading';
 
 class SimpsonsQuote extends Component {
   componentDidMount() {
@@ -16,7 +16,7 @@ class SimpsonsQuote extends Component {
     return (
       <>
         <Quote quote={this.props.quote} characterName={this.props.characterName} characterImage={this.props.characterImage}  />
-        <Load fetchQuote={this.props.fetchQuote} />
+        <Loading fetchQuote={this.props.fetchQuote} />
       </>
     );
   }

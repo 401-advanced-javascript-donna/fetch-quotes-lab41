@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Load from './Loading';
+import Loading from './Loading';
 
-describe('Load component', () => {
-  it('renders Load component', () => {
-    const wrapper = shallow(<Load fetchQuote={() => {}} />);
+describe('Loading component', () => {
+  it('should render Loading component', () => {
+    const wrapper = shallow(<Loading fetchQuote={() => {}} />);
     expect(wrapper).toMatchSnapshot();
   });
 });

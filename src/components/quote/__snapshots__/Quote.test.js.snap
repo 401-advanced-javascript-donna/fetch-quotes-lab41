@@ -2,11 +2,13 @@
 
 exports[`Quote component renders Quote component 1`] = `
 <Fragment>
-  <p />
   <img
     alt=""
     src=""
   />
   <p />
+  <p>
+     - 
+  </p>
 </Fragment>
 `;

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Load component renders Load component 1`] = `
+exports[`Loading component should render Loading component 1`] = `
 <button
   onClick={[Function]}
 >
