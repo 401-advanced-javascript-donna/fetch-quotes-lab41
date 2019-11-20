@@ -1,21 +1,49 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Quote from '../components/quote/Quote';
-// import { setQuote, setQuotePromise } from '../actions/quoteActions';
-import {  } from '../selectors/quoteSelectors';
-import { getQuote } from '../selectors/quoteSelectors';
+import { connect } from 'react-redux';
+import { getLoading, getCharacterImage, getCharacterName, getQuote } from '../selectors/quoteSelectors';
+import { setQuotePromise } from '../actions/quoteActions';
+import Load from '../components/quote/Loading';
 
-export default function DisplayQuote() {
-  const quote = useSelector(getQuote);
-  // const dispatch = useDispatch();
+class SimpsonsQuote extends Component {
+  componentDidMount() {
+    this.props.fetchQuote();
+  }
 
-  // useEffect(() => {
+  render() {
+    if(this.props.loading) return <h1>Loading...</h1>;
+    return (
+      <>
+        <Quote quote={this.props.quote} characterName={this.props.characterName} characterImage={this.props.characterImage}  />
+        <Load fetchQuote={this.props.fetchQuote} />
+      </>
+    );
+  }
 
-  // })
-  return (
-    <>
-      <Quote quote={quote} />
-    </>
-  );
+  static propTypes = {
+    quote: PropTypes.string.isRequired,
+    characterName: PropTypes.string.isRequired,
+    characterImage: PropTypes.string.isRequired,
+    fetchQuote: PropTypes.func.isRequired,
+    loading: PropTypes.bool.isRequired
+  }
 }
 
+const mapStateToProps = state => ({
+  quote: getQuote(state),
+  characterName: getCharacterName(state),
+  characterImage: getCharacterImage(state),
+  loading: getLoading(state)
+});
+
+const mapDispatchToProps = dispatch => ({
+  fetchQuote() {
+    dispatch(setQuotePromise());
+  }
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SimpsonsQuote);

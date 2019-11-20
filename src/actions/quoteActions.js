@@ -1,27 +1,12 @@
 import { fetchQuote } from '../services/quoteApi';
-import { createAction } from 'promise-middleware-redux';
 
-export const setQuote = () => dispatch => {
-  dispatch({
-    type: SET_QUOTE_LOADING
-  });
+export const UPDATE_QUOTE = 'UPDATE_QUOTE';
+export const UPDATE_QUOTE_LOADING = 'UPDATE_QUOTE_LOADING';
+export const UPDATE_QUOTE_DONE = 'UPDATE_QUOTE_DONE';
 
-  return fetchQuote()
-    .then(quote => {
-      dispatch({
-        type: SET_QUOTE,
-        payload: quote
-      });
-
-      dispatch({
-        type: SET_QUOTE_DONE
-      });
-    });
-
-};
-export const [
-  setQuotePromise,
-  SET_QUOTE,
-  SET_QUOTE_LOADING,
-  SET_QUOTE_DONE
-] = createAction('SET_QUOTE', fetchQuote);
+export const setQuotePromise = () => ({
+  type: UPDATE_QUOTE,
+  pendingType: UPDATE_QUOTE_LOADING,
+  fulfilledType: UPDATE_QUOTE_DONE,
+  payload: fetchQuote()
+});
